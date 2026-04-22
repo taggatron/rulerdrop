@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruler Drop Reaction Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="title-block card">
+        <p class="eyebrow">Human Performance Tool</p>
+        <h1>Ruler Drop Reaction Timer</h1>
+        <p class="subtitle">
+          Enter the catch distance in centimeters and get an instant reaction
+          time estimate in milliseconds using your conversion table.
+        </p>
+      </section>
+
+      <section class="converter card">
+        <form id="converterForm" novalidate>
+          <label for="ageInput">Age</label>
+          <div class="input-row">
+            <select id="ageInput" name="age" required>
+              <option value="">Select age</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+            </select>
+          </div>
+
+          <label for="distanceInput">Catch distance (cm)</label>
+          <div class="input-row">
+            <input
+              id="distanceInput"
+              name="distance"
+              type="number"
+              inputmode="decimal"
+              min="1"
+              max="30"
+              step="0.1"
+              placeholder="Example: 12.5"
+              required
+            />
+            <button type="submit" class="primary">Convert</button>
+            <button type="button" id="clearBtn" class="ghost">Clear</button>
+          </div>
+          <p class="hint">
+            Choose age 14 or 15, then enter distance from 1 to 30 cm. Decimal
+            values are linearly estimated between table entries.
+          </p>
+        </form>
+
+        <article class="result" aria-live="polite" aria-atomic="true">
+          <p class="result-label">Reaction Time</p>
+          <p id="resultValue" class="result-value">-- ms</p>
+          <p id="resultMeta" class="result-meta">
+            Enter a distance and press Convert.
+          </p>
+          <p id="storeMessage" class="store-message"></p>
+          <p id="errorMessage" class="error" role="alert"></p>
+        </article>
+      </section>
+
+      <section class="chart-wrap card">
+        <div class="chart-header">
+          <h2>Age Comparison Chart</h2>
+          <button type="button" id="clearDataBtn" class="ghost">Clear Saved Data</button>
+        </div>
+        <p class="chart-subtitle">Average reaction time from saved results by age.</p>
+
+        <div
+          class="chart-grid"
+          role="img"
+          aria-label="Bar chart comparing average reaction times for age 14 and age 15"
+        >
+          <article class="bar-column">
+            <div class="bar-track">
+              <div id="barAge14" class="bar bar-14"></div>
+            </div>
+            <p class="bar-label">Age 14</p>
+            <p id="barValue14" class="bar-value">No data</p>
+            <p id="barCount14" class="bar-count">0 entries</p>
+          </article>
+
+          <article class="bar-column">
+            <div class="bar-track">
+              <div id="barAge15" class="bar bar-15"></div>
+            </div>
+            <p class="bar-label">Age 15</p>
+            <p id="barValue15" class="bar-value">No data</p>
+            <p id="barCount15" class="bar-count">0 entries</p>
+          </article>
+        </div>
+
+        <p id="chartDifference" class="chart-difference">
+          Save some results to compare age groups.
+        </p>
+      </section>
+
+      <section class="table-wrap card">
+        <h2>Distance to Reaction Time Table</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Distance (cm)</th>
+                <th>Reaction Time (ms)</th>
+                <th>Distance (cm)</th>
+                <th>Reaction Time (ms)</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
