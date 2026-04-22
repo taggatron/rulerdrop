@@ -195,6 +195,22 @@ button:active {
   color: #304052;
 }
 
+.reaction-comment {
+  min-height: 2.5rem;
+  margin: 0.6rem 0 0;
+  padding: 0.62rem 0.7rem;
+  border-radius: 10px;
+  border: 1px dashed rgba(31, 111, 120, 0.35);
+  background: rgba(31, 111, 120, 0.08);
+  color: #17374d;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.reaction-comment.comment-pop {
+  animation: comment-pop 0.45s cubic-bezier(0.21, 0.87, 0.4, 1.15);
+}
+
 .store-message {
   min-height: 1.15rem;
   margin: 0.5rem 0 0;
@@ -348,6 +364,21 @@ tbody tr:nth-child(even) {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes comment-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 

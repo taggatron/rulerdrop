@@ -39,6 +39,7 @@ const ageInput = document.getElementById("ageInput");
 const distanceInput = document.getElementById("distanceInput");
 const resultValue = document.getElementById("resultValue");
 const resultMeta = document.getElementById("resultMeta");
+const reactionComment = document.getElementById("reactionComment");
 const storeMessage = document.getElementById("storeMessage");
 const errorMessage = document.getElementById("errorMessage");
 const tableBody = document.getElementById("tableBody");
@@ -116,6 +117,45 @@ function clearStoreMessage() {
 function resetResultDisplay() {
   resultValue.textContent = "-- ms";
   resultMeta.textContent = "Enter a distance and press Convert.";
+  reactionComment.classList.remove("comment-pop");
+  reactionComment.textContent = "Convert a distance to see your performance comment.";
+}
+
+function getPerformanceComment(reactionTime) {
+  if (reactionTime <= 90) {
+    return "A clairvoyant catcher... are you cheating?!";
+  }
+
+  if (reactionTime <= 120) {
+    return "Impressive, do you play computer games? Next stop, F16 fighter planes!";
+  }
+
+  if (reactionTime <= 150) {
+    return "Well done, are you a text messager?";
+  }
+
+  if (reactionTime <= 180) {
+    return "Not bad - but you're just Joe Average.";
+  }
+
+  if (reactionTime <= 210) {
+    return "Keep trying, you're not top gun yet!";
+  }
+
+  if (reactionTime <= 230) {
+    return "You'd get faster if it were money instead of a ruler!";
+  }
+
+  return "...ouch! Did the ruler hit your foot? Keep trying!";
+}
+
+function showPerformanceComment(reactionTime) {
+  reactionComment.textContent = getPerformanceComment(reactionTime);
+  reactionComment.classList.remove("comment-pop");
+
+  // Restart keyframe animation when the comment text updates.
+  void reactionComment.offsetWidth;
+  reactionComment.classList.add("comment-pop");
 }
 
 function isSupportedAge(value) {
@@ -247,6 +287,7 @@ function updateResult(options = {}) {
 
   resultValue.textContent = `${conversion.reactionTime} ms`;
   resultMeta.textContent = conversion.message;
+  showPerformanceComment(conversion.reactionTime);
 
   if (!shouldSave) {
     return true;
