@@ -33,6 +33,8 @@ const DISTANCE_TO_REACTION = new Map([
 
 const STORAGE_KEY = "rulerdrop-results-v1";
 const MAX_STORED_RECORDS = 500;
+const MIN_REACTION_TIME = 50;
+const MAX_REACTION_TIME = 250;
 
 const converterForm = document.getElementById("converterForm");
 const ageInput = document.getElementById("ageInput");
@@ -213,13 +215,23 @@ function getAgeStats(age) {
   };
 }
 
+function toChartHeightPercent(reactionTime) {
+  const clampedTime = Math.min(
+    MAX_REACTION_TIME,
+    Math.max(MIN_REACTION_TIME, reactionTime),
+  );
+  const normalized =
+    (clampedTime - MIN_REACTION_TIME) /
+    (MAX_REACTION_TIME - MIN_REACTION_TIME);
+
+  return Math.max(2, normalized * 100);
+}
+
 function renderAgeComparisonChart() {
   const age14 = getAgeStats(14);
   const age15 = getAgeStats(15);
-  const maxAverage = Math.max(age14.average, age15.average, 1);
-
-  const height14 = age14.count ? (age14.average / maxAverage) * 100 : 2;
-  const height15 = age15.count ? (age15.average / maxAverage) * 100 : 2;
+  const height14 = age14.count ? toChartHeightPercent(age14.average) : 2;
+  const height15 = age15.count ? toChartHeightPercent(age15.average) : 2;
 
   barAge14.style.height = `${height14}%`;
   barAge15.style.height = `${height15}%`;

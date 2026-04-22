@@ -77,28 +77,58 @@
         </div>
         <p class="chart-subtitle">Average reaction time from saved results by age.</p>
 
-        <div
-          class="chart-grid"
-          role="img"
-          aria-label="Bar chart comparing average reaction times for age 14 and age 15"
-        >
-          <article class="bar-column">
-            <div class="bar-track">
-              <div id="barAge14" class="bar bar-14"></div>
-            </div>
-            <p class="bar-label">Age 14</p>
-            <p id="barValue14" class="bar-value">No data</p>
-            <p id="barCount14" class="bar-count">0 entries</p>
-          </article>
+        <div class="chart-area">
+          <ul class="range-scale range-scale-shared" aria-hidden="true">
+            <li>250 ms</li>
+            <li>200 ms</li>
+            <li>150 ms</li>
+            <li>100 ms</li>
+            <li>50 ms</li>
+          </ul>
 
-          <article class="bar-column">
-            <div class="bar-track">
-              <div id="barAge15" class="bar bar-15"></div>
-            </div>
-            <p class="bar-label">Age 15</p>
-            <p id="barValue15" class="bar-value">No data</p>
-            <p id="barCount15" class="bar-count">0 entries</p>
-          </article>
+          <div
+            class="chart-grid"
+            role="img"
+            aria-label="Bar chart comparing average reaction times for age 14 and age 15 on a 50 to 250 millisecond scale"
+          >
+            <article class="bar-column">
+              <div class="bar-with-scale">
+                <ul class="range-scale range-scale-duplicate" aria-hidden="true">
+                  <li>250 ms</li>
+                  <li>200 ms</li>
+                  <li>150 ms</li>
+                  <li>100 ms</li>
+                  <li>50 ms</li>
+                </ul>
+
+                <div class="bar-track">
+                  <div id="barAge14" class="bar bar-14"></div>
+                </div>
+              </div>
+              <p class="bar-label">Age 14</p>
+              <p id="barValue14" class="bar-value">No data</p>
+              <p id="barCount14" class="bar-count">0 entries</p>
+            </article>
+
+            <article class="bar-column">
+              <div class="bar-with-scale">
+                <ul class="range-scale range-scale-duplicate" aria-hidden="true">
+                  <li>250 ms</li>
+                  <li>200 ms</li>
+                  <li>150 ms</li>
+                  <li>100 ms</li>
+                  <li>50 ms</li>
+                </ul>
+
+                <div class="bar-track">
+                  <div id="barAge15" class="bar bar-15"></div>
+                </div>
+              </div>
+              <p class="bar-label">Age 15</p>
+              <p id="barValue15" class="bar-value">No data</p>
+              <p id="barCount15" class="bar-count">0 entries</p>
+            </article>
+          </div>
         </div>
 
         <p id="chartDifference" class="chart-difference">

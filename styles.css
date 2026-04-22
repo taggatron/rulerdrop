@@ -249,8 +249,49 @@ h2 {
   color: #385066;
 }
 
-.chart-grid {
+.chart-area {
   margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.range-scale {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 220px;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  color: #4f6677;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.range-scale-duplicate {
+  display: none;
+}
+
+.range-scale li {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+  line-height: 1;
+}
+
+.range-scale li::after {
+  content: "";
+  position: absolute;
+  right: -0.55rem;
+  bottom: 0;
+  width: 0.45rem;
+  height: 1px;
+  background: rgba(31, 56, 72, 0.26);
+}
+
+.chart-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(120px, 1fr));
   gap: 1rem;
@@ -261,6 +302,13 @@ h2 {
   display: grid;
   justify-items: center;
   gap: 0.32rem;
+  width: 100%;
+}
+
+.bar-with-scale {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .bar-track {
@@ -274,7 +322,7 @@ h2 {
       rgba(35, 60, 75, 0.06),
       rgba(35, 60, 75, 0.06) 1px,
       transparent 1px,
-      transparent 22%
+      transparent 25%
     ),
     linear-gradient(180deg, #fbfcf9, #f1f4ef);
   display: flex;
@@ -398,8 +446,43 @@ tbody tr:nth-child(even) {
     margin-top: 0.25rem;
   }
 
+  .chart-area {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .range-scale-shared {
+    display: none;
+  }
+
+  .range-scale-duplicate {
+    display: grid;
+  }
+
+  .range-scale {
+    height: 220px;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: none;
+  }
+
+  .range-scale li {
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  .range-scale li::after {
+    display: block;
+  }
+
   .chart-grid {
     grid-template-columns: 1fr;
+  }
+
+  .bar-with-scale {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: start;
   }
 
   .bar-track {
